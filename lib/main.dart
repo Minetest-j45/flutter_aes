@@ -58,13 +58,16 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () async {
                 var pub = await Storage().readPub();
                 var priv = await Storage().readPriv();
+
+                //await Future.delayed(const Duration(milliseconds: 10));
+
                 print(pub);
                 print(priv);
               },
             ),
           ],
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
