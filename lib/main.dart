@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:fast_rsa/fast_rsa.dart';
@@ -49,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () async {
                 //Generate a new key pair
                 var pair = await RSA.generate(4096);
+
                 await Storage().writePub(pair.publicKey);
                 await Storage().writePriv(pair.privateKey);
               },
@@ -59,13 +61,53 @@ class _MyHomePageState extends State<MyHomePage> {
                 var pub = await Storage().readPub();
                 var priv = await Storage().readPriv();
 
-                //await Future.delayed(const Duration(milliseconds: 10));
-
-                print(pub);
-                print(priv);
+                //set page to display keys
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => _DisplayKeyPairState(pub, priv),
+                  ),
+                );
               },
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _DisplayKeyPairState extends StatefulWidget {
+  final String pub;
+  final String priv;
+
+  _DisplayKeyPairState(this.pub, this.priv);
+
+  @override
+  State<StatefulWidget> createState() => _DisplayKeyPairStateState(pub, priv);
+}
+
+class _DisplayKeyPairStateState extends State<_DisplayKeyPairState> {
+  final String pub;
+  final String priv;
+
+  _DisplayKeyPairStateState(this.pub, this.priv);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Display Key Pair"),
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(pub),
+              Text(priv),
+            ],
+          ),
         ),
       ),
     );
