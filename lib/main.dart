@@ -1,8 +1,8 @@
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
+
+import 'package:fast_rsa/fast_rsa.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:fast_rsa/fast_rsa.dart';
 
 void main() {
   runApp(const MyApp());
@@ -62,6 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 var priv = await Storage().readPriv();
 
                 //set page to display keys
+                if (!context.mounted) return;
                 Navigator.push(
                   context,
                   MaterialPageRoute(
