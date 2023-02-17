@@ -11,11 +11,10 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter aes',
+      title: 'Flutter AES',
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
@@ -130,7 +129,6 @@ class Storage {
   Future<File> writePub(String text) async {
     final file = await _pubFile;
 
-    // Write the file
     return file.writeAsString(text);
   }
 
@@ -138,12 +136,10 @@ class Storage {
     try {
       final file = await _pubFile;
 
-      // Read the file
       final contents = await file.readAsString();
 
       return contents;
     } catch (e) {
-      // If encountering an error, return 0
       return '';
     }
   }
@@ -156,7 +152,6 @@ class Storage {
   Future<File> writePriv(String text) async {
     final file = await _privFile;
 
-    // Write the file
     return file.writeAsString(text);
   }
 
@@ -164,12 +159,10 @@ class Storage {
     try {
       final file = await _privFile;
 
-      // Read the file
       final contents = await file.readAsString();
 
       return contents;
     } catch (e) {
-      // If encountering an error, return 0
       return '';
     }
   }
