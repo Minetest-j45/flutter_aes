@@ -1,6 +1,3 @@
-# flutter-codespaces
+# flutter_aes
 
-```
-flutter create .
-flutter run  -d web-server --web-hostname=0.0.0.0 --web-port=3000
-```
+A mini-app I made in Flutter for the sole purpose of testing the encryption library I chose for the main project.
